@@ -56,7 +56,7 @@ and open the template in the editor.
         </tr>
         <tr>
             <td colspan="5">
-                <input type="text" id="txtSearch" />
+                <input type="text" id="txtSearch" placeholder="Search..." />
                 <input type="button" id="btnSearch" value="Search" />
             </td>
         </tr>
