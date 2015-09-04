@@ -1,0 +1,48 @@
+﻿<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSON demo</title>
+    <style>
+        img {
+            height: 100px;
+            float: left;
+        }
+    </style>
+    <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+    <script>
+        //var data = "";
+        //$.getJSON("http://localhost/data.json", function (bigdata) {
+        //    data = bigdata;
+        //});
+
+
+
+        //function keyup() {
+        //    $("#detail").empty();
+        //    for (i = 1; i < data['dotdList'].length; i++) {
+        //        if (data['dotdList'][i].title.toLowerCase().indexOf($("#searchBox").val().toLowerCase()) != -1) {
+        //            $("#detail").append("<div><table><tr><td>Title:</td><td>" + data['dotdList'][i].title + "</td></tr><tr><td>description:</td><td>" + data['dotdList'][i].description + "</td></tr><tr><td>availability:</td><td>" + data['dotdList'][i].availability + "</td></tr><tr><td>url:</td><td><a href=\"" + data['dotdList'][i].url + "\">Link</a></td></tr><tr><td>imageUrls:</td><td><img src=\"" + data['dotdList'][i].imageUrls[0].url + "\" style=\"height:50px;width:50px\" /></td></tr></table></div>");
+        //        }
+        //    }
+        //}
+
+
+        function keyup()
+        {
+            $.getJSON("http://localhost/data.json", function (data) {
+                $("#detail").empty();
+                for (i = 1; i < data['dotdList'].length; i++) {
+                    if (data['dotdList'][i].title.toLowerCase().indexOf($("#searchBox").val().toLowerCase()) != -1) {
+                        $("#detail").append("<div><table><tr><td>Title:</td><td>" + data['dotdList'][i].title + "</td></tr><tr><td>description:</td><td>" + data['dotdList'][i].description + "</td></tr><tr><td>availability:</td><td>" + data['dotdList'][i].availability + "</td></tr><tr><td>url:</td><td><a href=\"" + data['dotdList'][i].url + "\">Link</a></td></tr><tr><td>imageUrls:</td><td><img src=\"" + data['dotdList'][i].imageUrls[0].url + "\" style=\"height:50px;width:50px\" /></td></tr></table></div>");
+                    }
+                }
+            });
+        }
+    </script>
+</head>
+<body>
+    Search: <input id="searchBox" type="text" onkeyup="keyup()"/>
+    <div id="detail"></div>
+</body>
+</html>
