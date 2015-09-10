@@ -1,0 +1,54 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Product App</title>
+</head>
+<body>
+    <input type="text" id="userid" value="" />
+    <div>
+        <table>
+            <tr>
+                <td width="60%">
+                    <div>
+                        <h2>Chat</h2>
+                    </div>
+                    <div style="border:solid;border-width:1px;border-radius:5px">
+                        <p id="products" />
+                    </div>
+                    <div style="border:solid;border-width:1px;border-radius:5px">
+
+                        <div><input type="text" value="" /><input type="button" value="Send" /></div>
+
+                    </div>
+                </td>
+            </tr>
+        </table>        
+    </div>
+
+
+
+    
+   
+
+    <script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-2.0.3.min.js"></script>
+    <script>
+        var uri = 'api/Chat';
+
+        $(document).ready(function () {            
+            setInterval(function () {
+                // Send an AJAX request
+                $.getJSON(uri)
+                    .done(function (data) {
+                        // On success, 'data' contains a list of products.
+                        $('#products').children().remove();
+                        $.each(data, function (key, item) {
+                            // Add a list item for the product.
+                            $('#products').append("<div><b style=\"color:blue\">" + item.SentByName + "</b><br/>" + item.Message + "<br/><i style=\"color:grey\">" + item.SentOnTime + "</i></div><hr/>");
+                        });
+                    });
+            }, 1000);
+            
+        });
+    </script>
+</body>
+</html>

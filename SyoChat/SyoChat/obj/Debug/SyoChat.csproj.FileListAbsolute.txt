@@ -1,0 +1,14 @@
+C:\wamp\www\SyoChat\SyoChat\bin\SyoChat.dll.config
+C:\wamp\www\SyoChat\SyoChat\bin\SyoChat.dll
+C:\wamp\www\SyoChat\SyoChat\bin\SyoChat.pdb
+C:\wamp\www\SyoChat\SyoChat\bin\Newtonsoft.Json.dll
+C:\wamp\www\SyoChat\SyoChat\bin\System.Net.Http.Formatting.dll
+C:\wamp\www\SyoChat\SyoChat\bin\System.Web.Http.dll
+C:\wamp\www\SyoChat\SyoChat\bin\System.Web.Http.WebHost.dll
+C:\wamp\www\SyoChat\SyoChat\bin\Newtonsoft.Json.xml
+C:\wamp\www\SyoChat\SyoChat\bin\System.Net.Http.Formatting.xml
+C:\wamp\www\SyoChat\SyoChat\bin\System.Web.Http.xml
+C:\wamp\www\SyoChat\SyoChat\bin\System.Web.Http.WebHost.xml
+C:\wamp\www\SyoChat\SyoChat\obj\Debug\SyoChat.csprojResolveAssemblyReference.cache
+C:\wamp\www\SyoChat\SyoChat\obj\Debug\SyoChat.dll
+C:\wamp\www\SyoChat\SyoChat\obj\Debug\SyoChat.pdb
