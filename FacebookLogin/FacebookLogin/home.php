@@ -28,7 +28,7 @@ catch(Facebook\Exceptions\FacebookSDKException $e) {
 
 try {
     $response = $fb->get('/me');
-    $userNode = $response->getGraphUser();
+    $userNode = $response->getGraphObject();
 }
 catch(Facebook\Exceptions\FacebookResponseException $e) {
     // When Graph returns an error
@@ -45,7 +45,7 @@ echo 'Logged in as ' . $userNode->getField('id');
 
 try {
     $response = $fb->get('/'.$userNode->getField('id').'/friendlists');
-    $graphObject = $response->();
+    //$graphObject = $response->();
 }
 catch(Facebook\Exceptions\FacebookSDKException $e) {
     // . . .
