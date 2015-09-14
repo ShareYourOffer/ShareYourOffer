@@ -1,0 +1,22 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2013
+VisualStudioVersion = 12.0.31101.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{A0786B88-2ADB-4C21-ABE8-AA2D79766269}") = "SYOFinal", "SYOFinal\SYOFinal.phpproj", "{E64AA46A-601C-4872-A72D-E079AC1D1004}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{E64AA46A-601C-4872-A72D-E079AC1D1004}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E64AA46A-601C-4872-A72D-E079AC1D1004}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E64AA46A-601C-4872-A72D-E079AC1D1004}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E64AA46A-601C-4872-A72D-E079AC1D1004}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
