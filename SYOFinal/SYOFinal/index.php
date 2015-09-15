@@ -117,7 +117,7 @@
                                 $client->setRedirectUri($RedirectUri);
                                 $client->setScopes(array('https://www.googleapis.com/auth/plus.me'
                                     ,'https://www.googleapis.com/auth/plus.login'
-                                    ,'https://www.googleapis.com/auth/contacts.readonly'));                               
+                                    ,'https://www.googleapis.com/auth/userinfo.email'));                               
                                 $authUrl = $client->createAuthUrl();
 
                                 if(isset($authUrl)) {

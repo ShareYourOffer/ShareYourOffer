@@ -20,8 +20,7 @@ if(!isset($_SESSION['Details']))
     $client->setRedirectUri($RedirectUri);
     $client->setScopes(array('https://www.googleapis.com/auth/plus.me'
         ,'https://www.googleapis.com/auth/userinfo.email'
-        ,'https://www.googleapis.com/auth/plus.login'
-        ,'https://www.googleapis.com/auth/contacts.readonly'));
+        ,'https://www.googleapis.com/auth/plus.login'));
     $plus = new apiPlusService($client);
 
     if (isset($_GET['code'])) {    
@@ -41,7 +40,7 @@ if(!isset($_SESSION['Details']))
             $Name= $me['displayName'],
             $Token=$_SESSION['access_token'],
             $Type='GooglePlusLogin',
-            $EmailId='email',        
+            $EmailId=$me['emails'][0]['value'],        
             $LogoutUrl='http://localhost:56501/GooglePlusResponse.php?XDEBUG_SESSION_START=BA5DFFA0&logout=1',
             $picture=$me['image']['url']
             );
