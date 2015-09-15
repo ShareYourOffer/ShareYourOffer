@@ -58,97 +58,84 @@
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav navbar-right">
 					<li>
-						<form class="navbar-form navbar-left" role="form">                            
-							<!--<div class="form-group">
-								<input type="text" placeholder="Email" class="form-control">
-							</div>
-							<div class="form-group">
-								<input type="password" placeholder="Password" class="form-control">
-							</div>-->
-                            <!--<button type="button" id="buttonlogin" class="btn btn-success">Sign in</button>-->	
-                            Sign In
-                            <div class="form-group">
+						                    <form class="navbar-form navbar-left" role="form">
                             <?php
-                            require_once __DIR__ . '/facebook-sdk-v5/autoload.php';
-
-                            $fb = new Facebook\Facebook([
-                              'app_id' => '1784238105136538',
-                              'app_secret' => '9700a0e6a09f6042c12c8831742fe3f3',
-                              'default_graph_version' => 'v2.4',
-                              ]);
-
                             session_start();
-
-                            $helper = $fb->getRedirectLoginHelper();
-                            $permissions = [
-                                'email'
-                                ,'public_profile'
-                                ,'user_friends'
-                                ,'read_custom_friendlists'
-                                ,'user_hometown'
-                                ,'user_location'
-                                ,'user_birthday'
-                                ,'user_relationships'
-                                ,'user_education_history'
-                                ,'user_relationship_details'
-                                ]; 
-                            $loginUrl = $helper->getLoginUrl('http://localhost:56501/index.php?XDEBUG_SESSION_START=BA5DFFA0', $permissions);
-
-                            echo '<a href="' . $loginUrl . '"><img src="img/facebook login.gif" class="form-control" style="padding:1px; width:initial" /></a>';
-
+                            if(!isset($_SESSION['Details']))
+                            {
                             ?>
-                            </div>
-                            <div class="form-group">
-                                <?php
-                                require_once 'google-sdk/Google/Service/Client.php';
-                                require_once 'google-sdk/Google/Service/PlusDomains.php';
 
+
+                            <div>
+                                Sign In
+                           
+                                <div class="form-group">
+                                <?php
+                                require_once __DIR__ . '/facebook-sdk-v5/autoload.php';
+                                $fb = new Facebook\Facebook([
+                                  'app_id' => '1784238105136538',
+                                  'app_secret' => '9700a0e6a09f6042c12c8831742fe3f3',
+                                  'default_graph_version' => 'v2.4',
+                                  ]);
+                                session_start();
+                                $helper = $fb->getRedirectLoginHelper();
+                                $permissions = [
+                                    'email'
+                                    ,'public_profile'
+                                    ,'user_friends'
+                                    ,'read_custom_friendlists'
+                                    ,'user_hometown'
+                                    ,'user_location'
+                                    ,'user_birthday'
+                                    ,'user_relationships'
+                                    ,'user_education_history'
+                                    ,'user_relationship_details'
+                                    ]; 
+                                $loginUrl = $helper->getLoginUrl('http://localhost:56501/FacebookResponse.php?XDEBUG_SESSION_START=BA5DFFA0', $permissions);
+                                if(isset($loginUrl)) {
+                                    print "<a class='login' href='$loginUrl'><img src=\"img/facebook login.gif\" class=\"form-control\" style=\"padding:1px; width:initial\" /></a>";
+                                } 
+                                ?>
+                                </div>
+
+
+                                <div class="form-group">
+                                    <?php
+
+                                require_once 'google-sdk/apiClient.php';
+                                require_once 'google-sdk/contrib/apiPlusService.php';                               
                                 session_start();
                                 $ApplicationName='syotoday';
-                                $clientId='574006003521-sgb65f00btj6klh0340qks330i3bdvo3.apps.googleusercontent.com';
-                                $clientSecret='LGqs7dilRK34t7IPryo0TFRZ';
-                                $RedirectUri='http://localhost:56501/index.php?XDEBUG_SESSION_START=BA5DFFA0';
+                                $clientId='574006003521-e7i2ujm6t7hvibkeid1dtmks36ccbmib.apps.googleusercontent.com';
+                                $clientSecret='QV-HzNBUdqNST-9m8rNo3VHZ';
+                                $RedirectUri='http://localhost:56501/GooglePlusResponse.php';
 
-                                $client = new Google_Client();
+                                $client = new apiClient();
                                 $client->setApplicationName($ApplicationName);
                                 $client->setClientId($clientId);
                                 $client->setClientSecret($clientSecret);
                                 $client->setRedirectUri($RedirectUri);
-                                $client->setScopes(array('https://www.googleapis.com/auth/plus.me',
-                                                         'https://www.googleapis.com/auth/plus.circles.read'));
-                                $plus = new Google_Service_PlusDomains($client);
-
-                                if (isset($_REQUEST['logout'])) {
-                                    unset($_SESSION['access_token']);
-                                }
-
-                                if (isset($_GET['code'])) {    
-                                    $client->authenticate($_GET['code']);
-                                    $_SESSION['access_token'] = $client->getAccessToken();
-                                    header('Location: http://' . $_SERVER['HTTP_HOST'] . $_SERVER['PHP_SELF']);
-                                }
-
-                                if (isset($_SESSION['access_token'])) {
-                                    $client->setAccessToken($_SESSION['access_token']);
-                                }
-
-                                if ($client->getAccessToken()) {
-                                }else {
-                                    $authUrl = $client->createAuthUrl();
-                                }
-
+                                $client->setScopes(array('https://www.googleapis.com/auth/plus.me'
+                                    ,'https://www.googleapis.com/auth/plus.login'
+                                    ,'https://www.googleapis.com/auth/contacts.readonly'));                               
+                                $authUrl = $client->createAuthUrl();
 
                                 if(isset($authUrl)) {
                                     print "<a class='login' href='$authUrl'><img src=\"img/GooglePlusLogin.png\" class=\"form-control\" style=\"padding:1px; width:initial\" /></a>";
                                 } 
-                                else {
-                                    print "<a class='logout' href='index.php?logout'>Logout</a>";
-                                }
+                                    ?>
+                                </div>
 
+
+                            </div>
+                            <?php
+                            }
+                            else
+                            {
+                                print "<div><img src=\"" .$_SESSION['Details'][5]. "\"/><a class='login' href=".$_SESSION['Details'][4].">Logout</a></div>";
+                            }
                             ?>
-                                
-                            </div>			
-						</form>
+                        </form>                        
 					</li>					
 				</ul>
 				<ul class="nav navbar-nav navbar-left">
