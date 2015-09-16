@@ -32,7 +32,8 @@
 
     <script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-2.0.3.min.js"></script>
     <script>
-        var uri = 'api/Chat';
+        //uri = 'http://localhost:20314/api/Chat/GetMessages/?chatid=' + '14';
+        uri = 'http://localhost:20314/api/Chat/GetMessages';
 
         $(document).ready(function () {            
             setInterval(function () {
@@ -43,12 +44,13 @@
                         $('#products').children().remove();
                         $.each(data, function (key, item) {
                             // Add a list item for the product.
-                            $('#products').append("<div><b style=\"color:blue\">" + item.SentByName + "</b><br/>" + item.Message + "<br/><i style=\"color:grey\">" + item.SentOnTime + "</i></div><hr/>");
+                            $('#products').append("<div class=\"chat-box-right\"><b style=\"color: blue\">" + item.SentByName + ":</b>" + item.Message + "<br /><i style=\"color: grey; font-size: 10px\">" + item.SentOnTime + "</i></div><hr/>");
                         });
                     });
             }, 1000);
             
         });
+       
     </script>
 </body>
 </html>
